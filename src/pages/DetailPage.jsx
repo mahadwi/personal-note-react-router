@@ -5,6 +5,7 @@ import NoteDetail from '../components/NoteDetail';
 import ArchivedButton from '../components/ArchivedButton';
 import DeleteButton from '../components/DeleteButton';
 import UnArchivedButton from '../components/UnArchivedButton';
+import PropTypes from 'prop-types';
 
 
 function DetailPageWrapper() {
@@ -54,6 +55,11 @@ class DetailPage extends React.Component {
             </section>
         );
     }
+}
+
+DetailPage.propTypes = {
+    id: PropTypes.string.isRequired,
+    navigate: PropTypes.func.isRequired
 }
 
 export default DetailPageWrapper;

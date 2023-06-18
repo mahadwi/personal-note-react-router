@@ -1,5 +1,5 @@
-import React from 'react'
-import NoteItem from './NoteItem'
+import React from 'react';
+import NoteItem from './NoteItem';
 
 export default function NoteList({notes}) {
   return (
@@ -10,6 +10,6 @@ export default function NoteList({notes}) {
             ))
         }
     </section>
-  )
+  );
 }
 

@@ -1,7 +1,7 @@
-import React from "react";
-import SaveButton from "../components/SaveButton";
-import { addNote } from "../utils/local-data";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import SaveButton from '../components/SaveButton';
+import { addNote } from '../utils/local-data';
+import { useNavigate } from 'react-router-dom';
 
 function AddPageWrapper(){
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ class AddPage extends React.Component {
 
     this.state = {
         title: '',
-        body: ''
+        body: '',
     }
 
     this.onInputHandler = this.onInputHandler.bind(this);
@@ -34,8 +34,8 @@ class AddPage extends React.Component {
     this.setState(() => {
         return {
             title: event.target.value
-        }
-    })
+        };
+    });
   }
 
   onSaveEventHandler(){
@@ -45,18 +45,18 @@ class AddPage extends React.Component {
 
   render() {
     return (
-      <section className="add-new-page">
-        <div className="add-new-page__input">
+      <section className='add-new-page'>
+        <div className='add-new-page__input'>
           <input
-            className="add-new-page__input__title"
-            type="text"
-            placeholder="Catatan rahasia"
+            className='add-new-page__input__title'
+            type='text'
+            placeholder='Catatan rahasia'
             onChange={this.onTitleChangeHandler}
             value={this.state.title}
           />
           <div
-            className="add-new-page__input__body"
-            data-placeholder="Sebenarnya saya adalah"
+            className='add-new-page__input__body'
+            data-placeholder='Sebenarnya saya adalah'
             contentEditable
             onInput={this.onInputHandler}
             value={this.state.body}

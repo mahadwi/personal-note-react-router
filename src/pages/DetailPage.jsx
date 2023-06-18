@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { archiveNote, deleteNote, getNote, unarchiveNote } from '../utils/local-data';
 import NoteDetail from '../components/NoteDetail';
@@ -42,8 +42,6 @@ class DetailPage extends React.Component {
         this.props.navigate('/');
     }
 
-
-
     render(){
         const archive = this.state.note.archived;
         return (
@@ -54,7 +52,7 @@ class DetailPage extends React.Component {
                     <DeleteButton id={this.props.id} onDelete={this.onDeleteEvenHandler} />
                 </div>
             </section>
-        )
+        );
     }
 }
 

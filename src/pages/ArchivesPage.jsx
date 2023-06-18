@@ -1,6 +1,6 @@
-import React from 'react'
-import SearchBar from '../components/SearchBar'
-import NoteList from '../components/NoteList'
+import React from 'react';
+import SearchBar from '../components/SearchBar';
+import NoteList from '../components/NoteList';
 import { getArchivedNotes } from '../utils/local-data';
 
 class Archives extends React.Component {
@@ -19,7 +19,7 @@ class Archives extends React.Component {
         <SearchBar />
         <NoteList notes={this.state.archived} />
       </section>
-    )
+    );
   }
 }
 

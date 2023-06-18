@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import SearchBar from '../components/SearchBar';
 import NoteList from '../components/NoteList';
 import AddButton from '../components/AddButton';
-import { getActiveNotes, getAllNotes } from '../utils/local-data';
+import { getActiveNotes } from '../utils/local-data';
 import { useSearchParams } from 'react-router-dom';
 
 function HomePageWrapper(){

@@ -1,64 +1,61 @@
-import React from 'react';
-import SearchBar from '../components/SearchBar';
-import NoteList from '../components/NoteList';
-import AddButton from '../components/AddButton';
-import { getActiveNotes } from '../utils/local-data';
-import { useSearchParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import SearchBar from "../components/SearchBar";
+import NoteList from "../components/NoteList";
+import AddButton from "../components/AddButton";
+import { getActiveNotes } from "../utils/network-data";
+import { useSearchParams } from "react-router-dom";
+import { LocaleConsumer } from "../context/LocaleContext";
 
-function HomePageWrapper(){
-    const [searchParams, setSearchParams] = useSearchParams();
+function HomePage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [notes, setNotes] = useState([]);
 
-    const keyword = searchParams.get('keyword');
+  useEffect(() => {
+    const response = async () => {
+      const { data } = await getActiveNotes();
+      setNotes(data);
+    };
+    response();
+  }, []);
 
-    function changeSearchParams(keyword){
-        setSearchParams({keyword});
-    }
+  const [keyword, setKeyword] = useState(() => {
+    return searchParams.get("keyword") || "";
+  });
 
-    return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
-}
+  function onKeywordChangeHandler(keyword) {
+    setKeyword(keyword);
+    setSearchParams({ keyword });
+  }
 
-class HomePage extends React.Component{
-    constructor(props){
-        super(props);
+  const loadNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(keyword.toLocaleLowerCase());
+  });
 
-        this.state = {
-            notes: getActiveNotes(),
-            keyword: props.defaultKeyword || '',
-        }
-
-        this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
-    }
-
-    onKeywordChangeHandler(keyword){
-        this.setState(() => {
-            return {
-                keyword,
-            }
-        });
-
-        this.props.keywordChange(keyword);
-    }
-
-    render(){
-        const notes = this.state.notes.filter((note) => {
-            return note.title.toLocaleLowerCase().includes(this.state.keyword.toLocaleLowerCase());
-        });
-
-        return(
+  return (
+    <LocaleConsumer>
+      {({ locale }) => {
+        return (
+          <>
             <section>
-                <h2>Catatan Aktif</h2>
-                <SearchBar keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
-                <NoteList notes={notes}/>
-                <AddButton />
+              <h2>{locale === "id" ? "Catatan Aktif" : "Active Note"}</h2>
+              <SearchBar
+                keyword={keyword}
+                keywordChange={onKeywordChangeHandler}
+              />
+              {loadNotes.length ? (
+                <NoteList notes={loadNotes} />
+              ) : (
+                <section className="notes-list-empty">
+                    <p className="notes-list__empty">{locale === 'id' ? 'Tidak ada catatan' : 'No notes'}</p>
+                </section>
+              )}
+              <AddButton />
             </section>
-        )
-    }
+          </>
+        );
+      }}
+    </LocaleConsumer>
+  );
 }
 
-HomePage.propTypes = {
-    defaultKeyword: PropTypes.string,
-    keywordChange: PropTypes.func.isRequired
-}
-
-export default HomePageWrapper;
+export default HomePage;

@@ -8,7 +8,6 @@ import AddPage from "./pages/AddPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { getUserLogged, putAccessToken } from "./utils/network-data";
-import { BsTranslate, BsSun } from "react-icons/bs";
 import HomePage from "./pages/HomePage";
 import { LocaleProvider } from "./context/LocaleContext";
 

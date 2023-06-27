@@ -1,5 +1,6 @@
 import React from "react";
 import { useInput } from "../utils/network-data";
+import PropTypes from 'prop-types';
 
 export default function LoginInput({ login }) {
   const [email, onChangeEmailHandler] = useInput("");
@@ -28,4 +29,8 @@ export default function LoginInput({ login }) {
       <button type="submit">Login</button>
     </form>
   );
+}
+
+LoginInput.propTypes = {
+  login: PropTypes.func.isRequired
 }

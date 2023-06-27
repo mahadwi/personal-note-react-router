@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LoginInput from "../components/LoginInput";
 import { login } from "../utils/network-data";
 import { LocaleConsumer } from "../context/LocaleContext";
+import PropTypes from 'prop-types';
 
 export default function LoginPage({ loginSuccess }) {
   async function onLogin({ email, password }) {
@@ -39,4 +40,8 @@ export default function LoginPage({ loginSuccess }) {
       }}
     </LocaleConsumer>
   );
+}
+
+LoginPage.propTypes = {
+  loginSuccess: PropTypes.func.isRequired
 }

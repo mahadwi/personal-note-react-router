@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SaveButton from "../components/SaveButton";
 import { addNote } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { useInput } from "../utils/network-data";
 
 function AddPage() {
@@ -41,9 +40,5 @@ function AddPage() {
     </section>
   );
 }
-
-AddPage.proptypes = {
-  navigate: PropTypes.func.isRequired,
-};
 
 export default AddPage;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useInput } from "../utils/network-data";
+import PropTypes from 'prop-types';
 
 export default function RegisterInput({register}) {
   const [name, onChangeNamehandler] = useInput("");
@@ -49,4 +50,8 @@ function onSubmitHandler(event){
       <button type="submit">Register</button>
     </form>
   );
+}
+
+RegisterInput.propTypes = {
+  register: PropTypes.func.isRequired
 }

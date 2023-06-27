@@ -3,6 +3,7 @@ import { BsMoon, BsSun, BsTranslate } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { LocaleConsumer } from "../context/LocaleContext";
+import PropTypes from 'prop-types';
 
 function Navigation({ auth, logout }) {
   return (
@@ -44,6 +45,11 @@ function Navigation({ auth, logout }) {
       }}
     </LocaleConsumer>
   );
+}
+
+Navigation.propTypes = {
+  auth: PropTypes.object,
+  logout: PropTypes.func.isRequired
 }
 
 export default Navigation;
